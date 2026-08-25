@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="بوابة دفع اتصالات كاش"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#00695C"
+            android:gravity="center"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Etisalat Cash Payment Gateway"
+            android:textSize="12sp"
+            android:textColor="#888888"
+            android:gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/tvStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:padding="12dp"
+            android:background="#ECEFF1"
+            android:layout_marginBottom="12dp" />
+
+        <Button
+            android:id="@+id/btnPermissions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="١. منح الأذونات (رسائل + إشعارات)" />
+
+        <Button
+            android:id="@+id/btnToggleService"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="٢. تشغيل خدمة المراقبة" />
+
+        <Button
+            android:id="@+id/btnBattery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="٣. استثناء التطبيق من توفير البطارية" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="رابط الـ Webhook (اختياري) — يتم إرسال كل عملية دفع إليه كـ JSON:"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etWebhook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="https://your-site.com/webhook"
+            android:inputType="textUri"
+            android:textDirection="ltr" />
+
+        <Button
+            android:id="@+id/btnSaveWebhook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="حفظ الرابط" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="آخر العمليات المستلمة:"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTransactions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:padding="12dp"
+            android:background="#F5F5F5"
+            android:text="لا توجد عمليات بعد"
+            android:textSize="14sp"
+            android:textDirection="ltr" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="13sp"
+            android:textColor="#666666"
+            android:text="ملاحظة مهمة لموبايلات أوبو (ColorOS): من الإعدادات ← إدارة التطبيقات ← بوابة اتصالات كاش ← فعّل «التشغيل التلقائي» واختر «عدم تحسين البطارية» حتى لا يوقف النظام التطبيق في الخلفية." />
+    </LinearLayout>
+</ScrollView>
