@@ -63,10 +63,10 @@ public class PaymentRequest {
 
     public String buildMessage(String merchantPhone) {
         StringBuilder sb = new StringBuilder();
-        sb.append("طلب دفع - اتصالات كاش\n");
+        sb.append("طلب دفع - محفظة إلكترونية\n");
         sb.append(String.format(Locale.US, "المبلغ: %.2f جنيه\n", amount));
         sb.append("حوّل المبلغ إلى محفظة: ").append(merchantPhone).append('\n');
-        sb.append("عبر تطبيق اتصالات كاش أو اطلب *777#\n");
+        sb.append("فودافون كاش: اطلب *9# | اتصالات كاش: اطلب *777#\n");
         if (note != null && !note.trim().isEmpty()) {
             sb.append("بيان: ").append(note.trim()).append('\n');
         }

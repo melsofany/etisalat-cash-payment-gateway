@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Parses Etisalat Cash payment-confirmation SMS messages.
+ * Parses Etisalat Cash and Vodafone Cash payment-confirmation SMS messages.
  * Message formats vary (Arabic/English), so patterns are kept permissive.
  */
 public final class SmsParser {
@@ -24,16 +24,19 @@ public final class SmsParser {
 
     private static final String[] MONEY_IN_KEYWORDS = {
             "received", "receive", "credited", "استلام", "استلمت", "تم اضافة", "تمت اضافة",
-            "تم إضافة", "حول لك", "حوّل لك", "حوالة واردة", "ايداع", "إيداع"
+            "تم إضافة", "حول لك", "حوّل لك", "حوالة واردة", "ايداع", "إيداع",
+            "الى محفظتك", "إلى محفظتك"
     };
 
     private SmsParser() {}
 
-    public static boolean isFromEtisalat(String sender, String body) {
+    public static boolean isFromWallet(String sender, String body) {
         String s = sender == null ? "" : sender.toLowerCase(Locale.US);
         String b = body == null ? "" : body.toLowerCase(Locale.US);
-        return s.contains("etisalat") || b.contains("etisalat cash")
-                || b.contains("اتصالات كاش") || b.contains("اتصالات مصر");
+        return s.contains("etisalat") || s.contains("vodafone")
+                || b.contains("etisalat cash") || b.contains("vodafone cash")
+                || b.contains("اتصالات كاش") || b.contains("اتصالات مصر")
+                || b.contains("فودافون كاش") || b.contains("فودافون");
     }
 
     public static boolean looksLikeIncomingPayment(String body) {
@@ -46,7 +49,7 @@ public final class SmsParser {
     }
 
     public static Transaction parse(String sender, String body) {
-        if (!isFromEtisalat(sender, body) || !looksLikeIncomingPayment(body)) return null;
+        if (!isFromWallet(sender, body) || !looksLikeIncomingPayment(body)) return null;
 
         String normalized = normalizeDigits(body);
         Transaction t = new Transaction();

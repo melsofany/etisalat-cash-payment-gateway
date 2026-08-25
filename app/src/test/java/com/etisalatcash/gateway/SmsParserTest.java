@@ -44,8 +44,36 @@ public class SmsParserTest {
     }
 
     @Test
-    public void rejectsNonEtisalatSender() {
-        assertNull(SmsParser.parse("Vodafone", "You have received EGP 100.00 from 01012345678"));
+    public void rejectsUnknownSender() {
+        assertNull(SmsParser.parse("Orange", "You have received EGP 100.00 from 01012345678"));
+        assertNull(SmsParser.parse("01000000000", "You have received EGP 100.00 from 01012345678"));
+    }
+
+    @Test
+    public void parsesVodafoneCashArabicMessage() {
+        Transaction t = SmsParser.parse("Vodafone",
+                "تم استلام مبلغ 200 جنيه في محفظتك فودافون كاش من الرقم 01012345678. رصيدك الحالي 550 جنيه");
+        assertNotNull(t);
+        assertEquals(200.0, t.amount, 0.001);
+        assertEquals("01012345678", t.fromPhone);
+    }
+
+    @Test
+    public void parsesVodafoneCashEnglishMessage() {
+        Transaction t = SmsParser.parse("Vodafone",
+                "You have received EGP 300.00 from 01055544433 in your Vodafone Cash wallet. Ref: VF99887766");
+        assertNotNull(t);
+        assertEquals(300.0, t.amount, 0.001);
+        assertEquals("01055544433", t.fromPhone);
+        assertEquals("VF99887766", t.reference);
+    }
+
+    @Test
+    public void parsesVodafoneBodyOnlyDetection() {
+        Transaction t = SmsParser.parse("VF-Cash",
+                "لقد استلمت 100 جنيه مصري في محفظتك من فودافون كاش");
+        assertNotNull(t);
+        assertEquals(100.0, t.amount, 0.001);
     }
 
     @Test

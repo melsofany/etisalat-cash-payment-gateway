@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">بوابة اتصالات كاش</string>
-    <string name="service_running">الخدمة شغالة ✅ — بتراقب رسائل اتصالات كاش</string>
+    <string name="app_name">بوابة دفع المحافظ</string>
+    <string name="service_running">الخدمة شغالة ✅ — بتراقب رسائل اتصالات كاش وفودافون كاش</string>
     <string name="service_stopped">الخدمة متوقفة ⛔</string>
     <string name="channel_service">خدمة بوابة الدفع</string>
     <string name="channel_payments">مدفوعات مستلمة</string>
-    <string name="service_notification_title">بوابة اتصالات كاش شغالة</string>
-    <string name="service_notification_text">التطبيق يراقب رسائل تأكيد الدفع في الخلفية</string>
+    <string name="service_notification_title">بوابة دفع المحافظ شغالة</string>
+    <string name="service_notification_text">التطبيق يراقب رسائل تأكيد الدفع (اتصالات كاش وفودافون كاش) في الخلفية</string>
 </resources>

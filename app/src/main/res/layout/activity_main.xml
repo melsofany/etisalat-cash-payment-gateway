@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="بوابة دفع اتصالات كاش"
+            android:text="بوابة دفع المحافظ"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#00695C"
@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Etisalat Cash Payment Gateway"
+            android:text="Etisalat &amp; Vodafone Cash Payment Gateway"
             android:textSize="12sp"
             android:textColor="#888888"
             android:gravity="center"
@@ -110,6 +110,6 @@
             android:layout_marginTop="20dp"
             android:textSize="13sp"
             android:textColor="#666666"
-            android:text="ملاحظة مهمة لموبايلات أوبو (ColorOS): من الإعدادات ← إدارة التطبيقات ← بوابة اتصالات كاش ← فعّل «التشغيل التلقائي» واختر «عدم تحسين البطارية» حتى لا يوقف النظام التطبيق في الخلفية." />
+            android:text="ملاحظة مهمة لموبايلات أوبو (ColorOS): من الإعدادات ← إدارة التطبيقات ← بوابة دفع المحافظ ← فعّل «التشغيل التلقائي» واختر «عدم تحسين البطارية» حتى لا يوقف النظام التطبيق في الخلفية." />
     </LinearLayout>
 </ScrollView>
