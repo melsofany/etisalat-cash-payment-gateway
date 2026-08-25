@@ -46,13 +46,15 @@ public class SmsReceiver extends BroadcastReceiver {
         if (t == null) return;
 
         TransactionStore.save(context, t);
-        showPaymentNotification(context, t);
+        final PaymentRequest matched = RequestStore.markPaid(context, t.fromPhone, t.amount, t.time);
+        showPaymentNotification(context, t, matched);
 
         final Context appCtx = context.getApplicationContext();
         final PendingResult pending = goAsync();
         new Thread(() -> {
             try {
-                WebhookSender.post(TransactionStore.getWebhookUrl(appCtx), t);
+                WebhookSender.post(TransactionStore.getWebhookUrl(appCtx), t,
+                        matched != null ? matched.id : null);
             } finally {
                 pending.finish();
             }
@@ -61,7 +63,7 @@ public class SmsReceiver extends BroadcastReceiver {
         context.sendBroadcast(new Intent(ACTION_REFRESH).setPackage(context.getPackageName()));
     }
 
-    static void showPaymentNotification(Context context, Transaction t) {
+    static void showPaymentNotification(Context context, Transaction t, PaymentRequest matched) {
         NotificationManager nm = context.getSystemService(NotificationManager.class);
         if (Build.VERSION.SDK_INT >= 26) {
             nm.createNotificationChannel(new NotificationChannel(
@@ -80,8 +82,11 @@ public class SmsReceiver extends BroadcastReceiver {
         Notification.Builder builder = Build.VERSION.SDK_INT >= 26
                 ? new Notification.Builder(context, CHANNEL_PAYMENTS)
                 : new Notification.Builder(context);
+        String title = matched != null
+                ? "✅ تم سداد طلب الدفع " + matched.id
+                : "تم استلام دفعة جديدة 💰";
         builder.setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle("تم استلام دفعة جديدة 💰")
+                .setContentTitle(title)
                 .setContentText(text)
                 .setStyle(new Notification.BigTextStyle().bigText(text))
                 .setAutoCancel(true)

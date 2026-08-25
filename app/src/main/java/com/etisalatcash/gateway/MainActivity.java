@@ -51,6 +51,8 @@ public class MainActivity extends Activity {
 
         findViewById(R.id.btnPermissions).setOnClickListener(v -> requestAllPermissions());
         findViewById(R.id.btnBattery).setOnClickListener(v -> requestBatteryExemption());
+        findViewById(R.id.btnNewRequest).setOnClickListener(v ->
+                startActivity(new Intent(this, PaymentRequestActivity.class)));
         findViewById(R.id.btnSaveWebhook).setOnClickListener(v -> {
             TransactionStore.setWebhookUrl(this, etWebhook.getText().toString());
             Toast.makeText(this, "تم حفظ الرابط ✅", Toast.LENGTH_SHORT).show();
@@ -90,6 +92,7 @@ public class MainActivity extends Activity {
         List<String> wanted = new ArrayList<>();
         wanted.add(Manifest.permission.RECEIVE_SMS);
         wanted.add(Manifest.permission.READ_SMS);
+        wanted.add(Manifest.permission.SEND_SMS);
         if (Build.VERSION.SDK_INT >= 33) {
             wanted.add(Manifest.permission.POST_NOTIFICATIONS);
         }

@@ -13,103 +13,111 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="بوابة دفع اتصالات كاش"
+            android:text="طلب دفع جديد"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#00695C"
             android:gravity="center"
-            android:layout_marginBottom="4dp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Etisalat Cash Payment Gateway"
-            android:textSize="12sp"
-            android:textColor="#888888"
-            android:gravity="center"
             android:layout_marginBottom="16dp" />
 
         <TextView
-            android:id="@+id/tvStatus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:padding="12dp"
-            android:background="#ECEFF1"
-            android:layout_marginBottom="12dp" />
-
-        <Button
-            android:id="@+id/btnPermissions"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="١. منح الأذونات (رسائل + إشعارات)" />
-
-        <Button
-            android:id="@+id/btnToggleService"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="٢. تشغيل خدمة المراقبة" />
-
-        <Button
-            android:id="@+id/btnBattery"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="٣. استثناء التطبيق من توفير البطارية" />
-
-        <Button
-            android:id="@+id/btnNewRequest"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="💸 إنشاء طلب دفع لأي محفظة" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="رابط الـ Webhook (اختياري) — يتم إرسال كل عملية دفع إليه كـ JSON:"
+            android:text="رقم محفظتك (اللي هيتحول عليها الفلوس):"
             android:textSize="14sp" />
 
         <EditText
-            android:id="@+id/etWebhook"
+            android:id="@+id/etMerchantPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="https://your-site.com/webhook"
-            android:inputType="textUri"
-            android:textDirection="ltr" />
-
-        <Button
-            android:id="@+id/btnSaveWebhook"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="حفظ الرابط" />
+            android:hint="01xxxxxxxxx"
+            android:inputType="phone"
+            android:textDirection="ltr"
+            android:gravity="start" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="رقم محفظة العميل:"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etCustomerPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="01xxxxxxxxx"
+            android:inputType="phone"
+            android:textDirection="ltr"
+            android:gravity="start" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="المبلغ (جنيه):"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="0.00"
+            android:inputType="numberDecimal"
+            android:textDirection="ltr"
+            android:gravity="start" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="بيان الطلب (اختياري):"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/etNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="مثال: فاتورة رقم 123" />
+
+        <Button
+            android:id="@+id/btnSendSms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="آخر العمليات المستلمة:"
+            android:text="إرسال طلب الدفع SMS للعميل" />
+
+        <Button
+            android:id="@+id/btnShare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="مشاركة الطلب (واتساب وغيره)" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="الطلبات الأخيرة:"
             android:textSize="16sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tvTransactions"
+            android:id="@+id/tvRequests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:padding="12dp"
             android:background="#F5F5F5"
-            android:text="لا توجد عمليات بعد"
+            android:text="لا توجد طلبات بعد"
             android:textSize="14sp"
             android:textDirection="ltr" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:textSize="13sp"
             android:textColor="#666666"
-            android:text="ملاحظة مهمة لموبايلات أوبو (ColorOS): من الإعدادات ← إدارة التطبيقات ← بوابة اتصالات كاش ← فعّل «التشغيل التلقائي» واختر «عدم تحسين البطارية» حتى لا يوقف النظام التطبيق في الخلفية." />
+            android:text="عند وصول دفعة بنفس رقم العميل والمبلغ، يتم تعليم الطلب «مدفوع» تلقائياً ويصلك إشعار تأكيد." />
     </LinearLayout>
 </ScrollView>

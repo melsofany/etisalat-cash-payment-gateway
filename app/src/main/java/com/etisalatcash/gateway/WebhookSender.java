@@ -14,10 +14,18 @@ public final class WebhookSender {
     private WebhookSender() {}
 
     public static void post(String urlStr, Transaction t) {
+        post(urlStr, t, null);
+    }
+
+    public static void post(String urlStr, Transaction t, String matchedRequestId) {
         if (urlStr == null || urlStr.isEmpty()) return;
         HttpURLConnection conn = null;
         try {
-            byte[] payload = t.toJson().toString().getBytes(StandardCharsets.UTF_8);
+            org.json.JSONObject json = t.toJson();
+            if (matchedRequestId != null) {
+                json.put("matchedRequestId", matchedRequestId);
+            }
+            byte[] payload = json.toString().getBytes(StandardCharsets.UTF_8);
             conn = (HttpURLConnection) new URL(urlStr).openConnection();
             conn.setRequestMethod("POST");
             conn.setConnectTimeout(10_000);
